@@ -57,11 +57,11 @@ class Student:
             return
         return self.average_rating == other.average_rating
 
-    # def __ne__(self, other):
-    #     if not isinstance(other, Student):
-    #         print('Такое сравнение некорректно')
-    #         return
-    #     return self.average_rating != other.average_rating
+    def __ne__(self, other):
+        if not isinstance(other, Student):
+            print('Такое сравнение некорректно')
+            return
+        return self.average_rating != other.average_rating
 
     def __gt__(self, other):
         if not isinstance(other, Student):
@@ -125,11 +125,11 @@ class Lecturer(Mentor):
             return
         return self.average_rating == other.average_rating
 
-    # def __ne__(self, other):
-    #     if not isinstance(other, Lecturer):
-    #         print('Такое сравнение некорректно')
-    #         return
-    #     return self.average_rating != other.average_rating
+    def __ne__(self, other):
+        if not isinstance(other, Lecturer):
+            print('Такое сравнение некорректно')
+            return
+        return self.average_rating != other.average_rating
 
     def __gt__(self, other):
         if not isinstance(other, Lecturer):
