@@ -78,6 +78,7 @@ class Student:
 
     def __ge__(self, other):
         if not isinstance(other, Student):
+            print('Такое сравнение некорректно')
             return
         return self.average_rating >= other.average_rating
 
@@ -146,6 +147,7 @@ class Lecturer(Mentor):
 
     def __ge__(self, other):
         if not isinstance(other, Lecturer):
+            print('Такое сравнение некорректно')
             return
         return self.average_rating >= other.average_rating
 
