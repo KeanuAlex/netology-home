@@ -95,6 +95,14 @@ class Lecturer(Mentor):
         self.grades = {}
 
     def __str__(self):
+        """
+        реализую вывод 
+        print(some_lecturer)
+        Имя: Some
+        Фамилия: Buddy
+        Средняя оценка за лекции: 9.9 
+        Нужно как то по другому нужно сюда еще средню оценку просто передавать, отдельным методом  ? 
+        """
 
         grades_count = 0
         for k in self.grades:
