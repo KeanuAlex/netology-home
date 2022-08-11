@@ -90,7 +90,6 @@ class Reviewer(Mentor):
         return res
 
 
-# Создаем лекторов и закрепляем их за курсом
 lecturer_1 = Lecturer('Ivan', 'Ivanov')
 lecturer_1.courses_attached += ['Python']
 
@@ -100,7 +99,6 @@ lecturer_2.courses_attached += ['Java']
 lecturer_3 = Lecturer('Semen', 'Zarev')
 lecturer_3.courses_attached += ['Python']
 
-# Создаем проверяющих и закрепляем их за курсом
 reviewer_1 = Reviewer('Some', 'Buddy')
 reviewer_1.courses_attached += ['Python']
 reviewer_1.courses_attached += ['Java']
@@ -109,7 +107,6 @@ reviewer_2 = Reviewer('Ostap', 'Bender')
 reviewer_2.courses_attached += ['Python']
 reviewer_2.courses_attached += ['Java']
 
-# Создаем студентов и определяем для них изучаемые и завершенные курсы
 student_1 = Student('Denis', 'Sviridov')
 student_1.courses_in_progress += ['Python']
 student_1.finished_courses += ['Введение в программирование']
@@ -159,39 +156,28 @@ reviewer_2.rate_hw(student_3, 'Python', 8)
 reviewer_2.rate_hw(student_3, 'Python', 7)
 reviewer_2.rate_hw(student_3, 'Python', 9)
 
-# Выводим характеристики созданных и оцененых студентов в требуемом виде
 print(f'Перечень студентов:\n\n{student_1}\n\n{student_2}\n\n{student_3}')
 print()
 print()
 
-# Выводим характеристики созданных и оцененых лекторов в требуемом виде
 print(f'Перечень лекторов:\n\n{lecturer_1}\n\n{lecturer_2}\n\n{lecturer_3}')
 print()
 print()
 
-# Выводим результат сравнения студентов по средним оценкам за домашние задания
 print(f'Результат сравнения студентов (по средним оценкам за ДЗ): '
       f'{student_1.name} {student_1.surname} < {student_2.name} {student_2.surname} = {student_1 > student_2}')
 print()
 
-# Выводим результат сравнения лекторов по средним оценкам за лекции
 print(f'Результат сравнения лекторов (по средним оценкам за лекции): '
       f'{lecturer_1.name} {lecturer_1.surname} < {lecturer_2.name} {lecturer_2.surname} = {lecturer_1 > lecturer_2}')
 print()
 
-# Создаем список студентов
 student_list = [student_1, student_2, student_3]
 
-# Создаем список лекторов
 lecturer_list = [lecturer_1, lecturer_2, lecturer_3]
 
 
-# Создаем функцию для подсчета средней оценки за домашние задания
-# по всем студентам в рамках конкретного курса
-# в качестве аргументов принимает список студентов и название курса
-
 def student_rating(student_list, course_name):
-
     sum_all = 0
     count_all = 0
     for stud in student_list:
@@ -202,9 +188,7 @@ def student_rating(student_list, course_name):
     return average_for_all
 
 
-
 def lecturer_rating(lecturer_list, course_name):
-
     sum_all = 0
     count_all = 0
     for lect in lecturer_list:
@@ -215,11 +199,8 @@ def lecturer_rating(lecturer_list, course_name):
     return average_for_all
 
 
-# Выводим результат подсчета средней оценки по всем студентам для данного курса
 print(f"Средняя оценка для всех студентов по курсу {'Java'}: {student_rating(student_list, 'Java')}")
 print()
 
-# Выводим результат подсчета средней оценки по всем лекорам для данного курса
 print(f"Средняя оценка для всех лекторов по курсу {'Java'}: {lecturer_rating(lecturer_list, 'Java')}")
 print()
-
