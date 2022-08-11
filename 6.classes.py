@@ -1,3 +1,4 @@
+
 class Student:
     def __init__(self, name, surname):
 
@@ -24,9 +25,9 @@ class Student:
         for k in self.grades:
             grades_count += len(self.grades[k])
         self.average_rating = sum(map(sum, self.grades.values())) / grades_count
-        res = f'Имя: {self.name}\n' \
-              f'Фамилия: {self.surname}\n' \
-              f'Средняя оценка за домашнее задание: {self.average_rating}\n' \
+        res = f'Имя:\033[38;5;208m {self.name}\033[0m\n' \
+              f'Фамилия: \033[38;5;208m {self.surname}\033[0m \n' \
+              f'Средняя оценка за домашнее задание: \033[38;5;27m{self.average_rating}\033[0m\n' \
               f'Курсы в процессе обучения: {courses_in_progress_string}\n' \
               f'Завершенные курсы: {finished_courses_string}'
         return res
@@ -110,7 +111,7 @@ class Lecturer(Mentor):
         for k in self.grades:
             grades_count += len(self.grades[k])
         self.average_rating = sum(map(sum, self.grades.values())) / grades_count
-        res = f'Имя: {self.name}\nФамилия: {self.surname}\nСредняя оценка за лекции: {self.average_rating}'
+        res = f'Имя:\033[38;5;208m {self.name}\033[0m \nФамилия: \033[38;5;208m {self.surname}\033[0m\nСредняя оценка за лекции: \033[38;5;27m{self.average_rating}\033[0m'
         return res
 
     def __lt__(self, other):
@@ -241,11 +242,11 @@ print()
 print()
 
 print(f'Результат сравнения студентов (по средним оценкам за ДЗ): '
-      f'{student_1.name} {student_1.surname} < {student_2.name} {student_2.surname} = {student_1 < student_2}')
+      f'\033[38;5;208m {student_1.name} {student_1.surname}\033[0m  < \033[38;5;208m {student_2.name} {student_2.surname}\033[0m  =  \033[38;5;208m{student_1 < student_2}\033[0m')
 print()
 
 print(f'Результат сравнения лекторов (по средним оценкам за лекции): '
-      f'{lecturer_1.name} {lecturer_1.surname} <= {lecturer_2.name} {lecturer_2.surname} = {lecturer_1 <= lecturer_2}')
+      f'\033[38;5;208m {lecturer_1.name} {lecturer_1.surname}\033[0m  <= \033[38;5;208m {lecturer_2.name} {lecturer_2.surname} \033[0m = \033[38;5;208m{lecturer_1 <= lecturer_2}\033[0m')
 print()
 
 student_list = [student_1, student_2, student_3]
@@ -288,8 +289,8 @@ def lecturer_rating(lecturer_list, course_name):
     return average_for_all
 
 
-print(f"Средняя оценка для всех студентов по курсу {'Java'}: {student_rating(student_list, 'Java')}")
+print(f"Средняя оценка для всех студентов по курсу {'Java'}: \033[38;5;27m{student_rating(student_list, 'Java')}\033[0m")
 print()
 
-print(f"Средняя оценка для всех лекторов по курсу {'Java'}: {lecturer_rating(lecturer_list, 'Java')}")
+print(f"Средняя оценка для всех лекторов по курсу {'Java'}: \033[38;5;27m{lecturer_rating(lecturer_list, 'Java')}\033[0m")
 print()
