@@ -9,6 +9,15 @@ class Student:
         self.average_rating = float()
 
     def __str__(self):
+        """"
+        реализую среднюю оценку для вывода вида
+        print(some_student)
+        Имя: Ruoy
+        Фамилия: Eman
+        Средняя оценка за домашние задания: 9.9
+        Курсы в процессе изучения: Python, Git
+        Завершенные курсы: Введение в программирование
+        """
         grades_count = 0
         courses_in_progress_string = ', '.join(self.courses_in_progress)
         finished_courses_string = ', '.join(self.finished_courses)
@@ -40,6 +49,35 @@ class Student:
             return
         return self.average_rating < other.average_rating
 
+    def __eq__(self, other):
+        if not isinstance(other, Student):
+            print('Такое сравнение некорректно')
+            return
+        return self.average_rating == other.average_rating
+
+    # def __ne__(self, other):
+    #     if not isinstance(other, Student):
+    #         print('Такое сравнение некорректно')
+    #         return
+    #     return self.average_rating != other.average_rating
+
+    def __gt__(self, other):
+        if not isinstance(other, Student):
+            print('Такое сравнение некорректно')
+            return
+        return self.average_rating > other.average_rating
+
+    def __le__(self, other):
+        if not isinstance(other, Student):
+            print('Такое сравнение некорректно')
+            return
+        return self.average_rating <= other.average_rating
+
+    def __ge__(self, other):
+        if not isinstance(other, Student):
+            return
+        return self.average_rating >= other.average_rating
+
 
 class Mentor:
     def __init__(self, name, surname):
@@ -66,11 +104,39 @@ class Lecturer(Mentor):
         return res
 
     def __lt__(self, other):
-
         if not isinstance(other, Lecturer):
             print('Такое сравнение некорректно')
             return
         return self.average_rating < other.average_rating
+
+    def __eq__(self, other):
+        if not isinstance(other, Lecturer):
+            print('Такое сравнение некорректно')
+            return
+        return self.average_rating == other.average_rating
+
+    # def __ne__(self, other):
+    #     if not isinstance(other, Lecturer):
+    #         print('Такое сравнение некорректно')
+    #         return
+    #     return self.average_rating != other.average_rating
+
+    def __gt__(self, other):
+        if not isinstance(other, Lecturer):
+            print('Такое сравнение некорректно')
+            return
+        return self.average_rating > other.average_rating
+
+    def __le__(self, other):
+        if not isinstance(other, Lecturer):
+            print('Такое сравнение некорректно')
+            return
+        return self.average_rating <= other.average_rating
+
+    def __ge__(self, other):
+        if not isinstance(other, Lecturer):
+            return
+        return self.average_rating >= other.average_rating
 
 
 class Reviewer(Mentor):
@@ -165,11 +231,11 @@ print()
 print()
 
 print(f'Результат сравнения студентов (по средним оценкам за ДЗ): '
-      f'{student_1.name} {student_1.surname} < {student_2.name} {student_2.surname} = {student_1 > student_2}')
+      f'{student_1.name} {student_1.surname} < {student_2.name} {student_2.surname} = {student_1 < student_2}')
 print()
 
 print(f'Результат сравнения лекторов (по средним оценкам за лекции): '
-      f'{lecturer_1.name} {lecturer_1.surname} < {lecturer_2.name} {lecturer_2.surname} = {lecturer_1 > lecturer_2}')
+      f'{lecturer_1.name} {lecturer_1.surname} <= {lecturer_2.name} {lecturer_2.surname} = {lecturer_1 <= lecturer_2}')
 print()
 
 student_list = [student_1, student_2, student_3]
@@ -177,7 +243,14 @@ student_list = [student_1, student_2, student_3]
 lecturer_list = [lecturer_1, lecturer_2, lecturer_3]
 
 
+
+
 def student_rating(student_list, course_name):
+   
+    """
+    Средняая оценка для всех студентов 
+    """
+
     sum_all = 0
     count_all = 0
     for stud in student_list:
@@ -188,7 +261,13 @@ def student_rating(student_list, course_name):
     return average_for_all
 
 
+
+
+
 def lecturer_rating(lecturer_list, course_name):
+    """
+    Средняя оценка для всех лекторов 
+    """
     sum_all = 0
     count_all = 0
     for lect in lecturer_list:
