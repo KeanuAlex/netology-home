@@ -42,6 +42,8 @@ class Student:
         else:
             return 'Ошибка'
 
+
+# можео реализовать все сравнения использую декаратор  total_ordering как вариант 
     def __lt__(self, other):
 
         if not isinstance(other, Student):
