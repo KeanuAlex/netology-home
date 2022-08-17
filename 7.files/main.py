@@ -39,69 +39,27 @@ def get_shop_list_by_dishes(dishes, person_count):
     return ingr_list
 
 
-def rewrite_file(path1=None, path2=None, path3=None):
-    path1 = '1.txt'
-    path2 = '2.txt'
-    path3 = '3.txt'
-    os.chdir('files/sorted')
-    outout_file = "rewrite_file.txt"
-    file1_path = os.path.join(os.getcwd(), path1)
-    file2_path = os.path.join(os.getcwd(), path2)
-    file3_path = os.path.join(os.getcwd(), path3)
-    with open(file1_path, 'r', encoding='utf-8') as f1:
-        file1 = f1.readlines()
-    with open(file2_path, 'r', encoding='utf-8') as f2:
-        file2 = f2.readlines()
-    with open(file3_path, 'r', encoding='utf-8') as f3:
-        file3 = f3.readlines()
-    with open(outout_file, 'w', encoding='utf-8') as f_total:
+def create_combined_list(directory):
+    file_list = os.listdir(directory)
+    combined_list = []
 
-        if len(file1) < len(file2) and len(file1) < len(file3):
-            f_total.write(path1 + '\n')
-            f_total.write(str(len(file1)) + '\n')
-            f_total.writelines(file1)
-            f_total.write('\n')
-        elif len(file2) < len(file1) and len(file2) < len(file3):
-            f_total.write(path2 + '\n')
-            f_total.write(str(len(file2)) + '\n')
-            f_total.writelines(file2)
-            f_total.write('\n')
-        elif len(file3) < len(file1) and len(file3) < len(file2):
-            f_total.write(path3 + '\n')
-            f_total.write(str(len(file3)) + '\n')
-            f_total.writelines(file3)
-            f_total.write('\n')
-        if len(file2) > len(file1) > len(file3) or len(file2) < len(file1) < len(
-                file3):
-            f_total.write(path1 + '\n')
-            f_total.write(str(len(file1)) + '\n')
-            f_total.writelines(file1)
-            f_total.write('\n')
-        elif len(file1) > len(file2) > len(file3) or len(file2) > len(file1) and len(file2) < len(
-                file3):
-            f_total.write(path2 + '\n')
-            f_total.write(str(len(file2)) + '\n')
-            f_total.writelines(file2)
-            f_total.write('\n')
-        elif len(file1) > len(file3) > len(file2) or len(file3) > len(file1) and len(file3) < len(
-                file2):
-            f_total.write(path3 + '\n')
-            f_total.write(str(len(file3)) + '\n')
-            f_total.writelines(file3)
-            f_total.write('\n')
-        if len(file1) > len(file2) and len(file1) > len(file3):
-            f_total.write(path1 + '\n')
-            f_total.write(str(len(file1)) + '\n')
-            f_total.writelines(file1)
-        elif len(file2) > len(file1) and len(file2) > len(file3):
-            f_total.write(path2 + '\n')
-            f_total.write(str(len(file2)) + '\n')
-            f_total.writelines(file2)
-        elif len(file3) > len(file1) and len(file3) > len(file2):
-            f_total.write(path3 + '\n')
-            f_total.write(str(len(file3)) + '\n')
-            f_total.writelines(file3)
+    for file in file_list:
+        with open(directory + "/" + file, encoding='UTF8') as cur_file:
+            combined_list.append([file, 0, []])
+            for line in cur_file:
+                combined_list[-1][2].append(line.strip())
+                combined_list[-1][1] += 1
 
+    return sorted(combined_list, key=lambda x: x[2], reverse=True)
+
+
+def create_file_from_directory(directory, filename):
+    with open(filename + '.txt', 'w+', encoding='UTF8') as newfile:
+        for file in create_combined_list(directory):
+            newfile.write(f'{file[0]}\n')
+            newfile.write(f'{file[1]} \n')
+            for string in file[2]:
+                newfile.write(string + '\n')
 
 
 file = 'files/recipes.txt'
@@ -109,5 +67,4 @@ cook_book = recipes(file)
 print(cook_book)
 print('-' * 10)
 print(get_shop_list_by_dishes(['Запеченный картофель', 'Омлет'], 2))
-
-rewrite_file()
+create_file_from_directory('files\sorted', 'files\Recipes')
